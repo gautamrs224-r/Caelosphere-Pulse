@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-textPrimary font-sans antialiased;
+  }
+
+  /* Custom scrollbar to match the dark purple theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #24193D;
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2E1F4D;
+  }
+
+  /* Visible keyboard focus, accessible across the app */
+  :focus-visible {
+    outline: 2px solid #7C3AED;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #71717A;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(18, 11, 36, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .glow-shadow {
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.35);
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ----------------------------------------------------------------
+   Alternate theme overrides.
+   The Tailwind config defines the default "dark-purple" palette as
+   static utility colors (bg-background, bg-card, text-primary, etc).
+   Switching themes re-points the underlying CSS variables that the
+   small set of "themed" elements (declared via [data-themed]) read,
+   without needing to recompile Tailwind at runtime.
+   ---------------------------------------------------------------- */
+:root,
+.theme-dark-purple {
+  --t-bg: #080510;
+  --t-sidebar: #0d0818;
+  --t-card: #120b24;
+  --t-elevated: #18102f;
+  --t-primary: #7c3aed;
+  --t-primary-hover: #9333ea;
+  --t-primary-bright: #a855f7;
+  --t-border: #24193d;
+}
+
+.theme-dark-blue {
+  --t-bg: #05070f;
+  --t-sidebar: #070b15;
+  --t-card: #0c1322;
+  --t-elevated: #11192e;
+  --t-primary: #3b82f6;
+  --t-primary-hover: #2563eb;
+  --t-primary-bright: #60a5fa;
+  --t-border: #1b2438;
+}
+
+.theme-dark-gray {
+  --t-bg: #0a0a0b;
+  --t-sidebar: #0e0e10;
+  --t-card: #161618;
+  --t-elevated: #1e1e21;
+  --t-primary: #6b7280;
+  --t-primary-hover: #9ca3af;
+  --t-primary-bright: #d1d5db;
+  --t-border: #27272a;
+}
+
+[data-themed="bg"] {
+  background-color: var(--t-bg) !important;
+}
+[data-themed="sidebar"] {
+  background-color: var(--t-sidebar) !important;
+}
+[data-themed="card"] {
+  background-color: var(--t-card) !important;
+}
+[data-themed="elevated"] {
+  background-color: var(--t-elevated) !important;
+}
+[data-themed="primary"] {
+  background-color: var(--t-primary) !important;
+}
+[data-themed="primary"]:hover {
+  background-color: var(--t-primary-hover) !important;
+}
+[data-themed="primary-text"] {
+  color: var(--t-primary-bright) !important;
+}
+[data-themed="border"] {
+  border-color: var(--t-border) !important;
+}
+[data-themed="primary-border"] {
+  border-color: var(--t-primary) !important;
+}
