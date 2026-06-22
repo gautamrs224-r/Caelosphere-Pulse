@@ -1,4 +1,4 @@
-# ChatSphere
+# CaeloSphere Pulse
 
 A production-ready, real-time chat application with an ultra-dark purple theme.
 
@@ -9,7 +9,7 @@ A production-ready, real-time chat application with an ultra-dark purple theme.
 ## 1. Project Structure
 
 ```
-chatsphere/
+CaeloSphere Pulse/
 ├── client/                 # React frontend (Vite)
 │   ├── src/
 │   │   ├── components/     # auth, chat, layout, settings, ui
@@ -86,7 +86,7 @@ Fill in `VITE_GOOGLE_CLIENT_ID` with the **same** Google Client ID used in the b
 5. Under **Authorized JavaScript origins**, add:
    - `http://localhost:5173` (Vite dev server)
    - your production domain, once deployed
-6. You do not need a redirect URI for this flow — ChatSphere uses Google Identity Services' one-tap/button flow, which works via JavaScript origins only.
+6. You do not need a redirect URI for this flow — CaeloSphere Pulse uses Google Identity Services' one-tap/button flow, which works via JavaScript origins only.
 7. Copy the generated **Client ID** into both `.env` files.
 
 ### 3.5 Setting up Cloudinary
