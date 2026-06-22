@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Lock,
   Camera,
@@ -6,6 +7,7 @@ import {
   Palette,
   Check,
   FileText,
+  LogOut,
 } from "lucide-react";
 import Avatar from "../components/ui/Avatar.jsx";
 import Modal from "../components/ui/Modal.jsx";
@@ -25,9 +27,10 @@ const THEMES = [
 ];
 
 export default function SettingsPage() {
-  const { user, updateUser } = useAuth();
+  const { user, updateUser, logout } = useAuth();
   const { theme, setTheme } = useTheme();
   const fileInputRef = useRef(null);
+  const navigate = useNavigate();
 
   const [activeModal, setActiveModal] = useState(null); // "password" | "name" | "bio" | null
   const [isUploadingPic, setIsUploadingPic] = useState(false);
@@ -146,6 +149,11 @@ export default function SettingsPage() {
     }
   };
 
+  const handleLogout = async () => {
+    await logout();
+    navigate("/login");
+  };
+
   return (
     <div className="flex flex-col h-full overflow-y-auto">
       <div className="px-5 sm:px-8 py-6 border-b border-border">
@@ -243,6 +251,17 @@ export default function SettingsPage() {
               ))}
             </div>
           </div>
+        </SettingsSection>
+
+        {/* Logout — only way to log out on mobile, where the sidebar is hidden */}
+        <SettingsSection>
+          <SettingsRow
+            icon={LogOut}
+            label="Logout"
+            danger
+            onClick={handleLogout}
+            rightElement={<span />}
+          />
         </SettingsSection>
       </div>
 
